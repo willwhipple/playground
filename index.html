@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Hub</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(
+                135deg,
+                #034694 0%,
+                #ffffff 50%,
+                #ffcdd2 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientFlow 10s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-width: 400px;
+        }
+        h1 {
+            color: #034694;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        #timer {
+            font-size: 7rem;
+            margin: 1.5rem 0;
+            color: #034694;
+            font-weight: bold;
+        }
+        button {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.6rem;
+            margin: 1rem;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            background: linear-gradient(135deg, #034694, #0461cc);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(3, 70, 148, 0.2);
+        }
+        button:hover {
+            background: linear-gradient(135deg, #0461cc, #034694);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(3, 70, 148, 0.3);
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        button.rest-mode {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+        }
+        button.rest-mode:hover {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will's Pomodoro Timer</h1>
+        <div id="timer">25:00</div>
+        <button id="startBtn">Start</button>
+        <button id="resetBtn">Reset</button>
+        <button id="modeBtn" class="rest-mode">Switch to Rest Mode</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
