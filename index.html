@@ -38,15 +38,16 @@
         .container {
             text-align: center;
             background-color: #ffffff;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(3, 70, 148, 0.2);
             min-width: 400px;
+            position: relative;
         }
         h1 {
             color: #034694;
             font-size: 3rem;
-            margin-bottom: 1.5rem;
+            margin: 2rem 0 1.5rem;
             font-weight: 700;
         }
         #timer {
@@ -87,10 +88,10 @@
             background: linear-gradient(135deg, #dc2626, #ef4444);
             box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
         }
-        button.fixed-corner {
-            position: fixed;
+        button.container-corner {
+            position: absolute;
             top: 10px;
-            right: 10px;
+            left: 10px;
             z-index: 1000;
         }
         .progress-bar-container {
@@ -126,20 +127,114 @@
         .icon-button i {
             font-size: 1.4rem;
         }
+        .small-button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            min-width: 100px;
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            margin-top: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+        }
+        .small-button:hover {
+            background: linear-gradient(135deg, #357abd, #4a90e2);
+        }
+        .small-button.rest-mode {
+            background: linear-gradient(135deg, #ff7676, #ff5252);
+        }
+        .small-button.rest-mode:hover {
+            background: linear-gradient(135deg, #ff5252, #ff7676);
+        }
+        .small-button:disabled {
+            background: linear-gradient(135deg, #cccccc, #bbbbbb);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .small-button.rest-mode:disabled {
+            background: linear-gradient(135deg, #ffcccc, #ffbbbb);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .button-group button {
+            flex: 1;
+            max-width: 150px;
+            margin: 0;
+        }
+        .reset-corner {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            min-width: unset;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #cccccc;
+            margin: 0;
+            transition: background-color 0.3s ease;
+        }
+        .reset-corner:hover {
+            background-color: #b3b3b3;
+        }
+        .reset-corner i {
+            font-size: 1.2rem;
+            color: white;
+        }
+        #addTimeBtn {
+            background: linear-gradient(135deg, #034694, #0461cc);
+            color: white;
+            font-size: 1.6rem;
+            min-width: 150px;
+        }
+        #addTimeBtn:hover {
+            background: linear-gradient(135deg, #0461cc, #034694);
+        }
+        #modeBtn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            margin: 0 0 1rem;
+        }
     </style>
 </head>
 <body>
-    <button id="modeBtn" class="rest-mode fixed-corner icon-button">
-        <i class="fas fa-coffee"></i>
-    </button>
     <div class="container">
+        <button id="modeBtn" class="rest-mode icon-button container-corner">
+            <i class="fas fa-coffee"></i>
+        </button>
+        <button id="resetBtn" class="reset-corner">
+            <i class="fas fa-undo"></i>
+        </button>
         <h1>Pomodoro Timer</h1>
         <div id="timer">25:00</div>
         <div class="progress-bar-container">
             <div id="progress-bar"></div>
         </div>
-        <button id="startBtn">Start</button>
-        <button id="resetBtn">Reset</button>
+        <div class="button-group">
+            <button id="startBtn">Start</button>
+            <button id="addTimeBtn" class="primary-button">+5 min</button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>

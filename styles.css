@@ -14,6 +14,7 @@ body {
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(3, 70, 148, 0.2);
+    position: relative;
 }
 
 #timer {
@@ -32,6 +33,7 @@ button {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 
 button:hover {
@@ -48,22 +50,23 @@ button:hover {
     background-color: #023a7a;
 }
 
-#resetBtn {
-    background-color: #dc3545;
-    color: white;
-}
-
-#resetBtn:hover {
-    background-color: #bb2d3b;
-}
-
 #modeBtn {
-    background-color: #034694;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
     color: white;
+    margin: 0;
 }
 
 #modeBtn:hover {
-    background-color: #023a7a;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 
 .fixed-corner {
@@ -88,4 +91,80 @@ button:hover {
 
 .rest-mode:hover {
     background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+
+.button-group button {
+    flex: 1;
+    max-width: 150px;
+    margin: 0;
+}
+
+#addTimeBtn {
+    background: linear-gradient(135deg, #034694, #0461cc);
+    color: white;
+}
+
+#addTimeBtn:hover {
+    background: linear-gradient(135deg, #0461cc, #034694);
+}
+
+#addTimeBtn:disabled {
+    background: linear-gradient(135deg, #cccccc, #bbbbbb);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#addTimeBtn.rest-mode {
+    background: linear-gradient(135deg, #ff7676, #ff5252);
+}
+
+#addTimeBtn.rest-mode:hover {
+    background: linear-gradient(135deg, #ff5252, #ff7676);
+}
+
+#addTimeBtn.rest-mode:disabled {
+    background: linear-gradient(135deg, #ffcccc, #ffbbbb);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.vertical-button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Adjust spacing between buttons */
+}
+
+.reset-corner {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    min-width: unset;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #cccccc;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+.reset-corner:hover {
+    background-color: #b3b3b3;
+}
+.reset-corner i {
+    font-size: 1.2rem;
+    color: white;
 } 
