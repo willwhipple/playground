@@ -6,6 +6,7 @@ const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('startBtn');
 const resetButton = document.getElementById('resetBtn');
 const modeButton = document.getElementById('modeBtn');
+const progressBar = document.getElementById('progress-bar');
 
 let timeLeft = WORK_TIME;
 let timerId = null;
@@ -13,21 +14,29 @@ let timerId = null;
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
-    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    timerDisplay.textContent = timeString;
+    document.title = `${timeString} - Productivity Hub`;
+}
+
+function updateProgressBar(timeLeft, totalTime) {
+    const progress = timeLeft / totalTime;
+    progressBar.style.transform = `scaleX(${progress})`;
 }
 
 function toggleMode() {
     isWorkMode = !isWorkMode;
     timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
-    modeButton.textContent = isWorkMode ? 'Switch to Rest Mode' : 'Switch to Work Mode';
+    modeButton.innerHTML = isWorkMode ? '<i class="fas fa-coffee"></i>' : '<i class="fas fa-briefcase"></i>';
+    progressBar.classList.toggle('rest-mode', !isWorkMode);
     updateDisplay();
+    updateProgressBar(timeLeft, isWorkMode ? WORK_TIME : REST_TIME);
     if (timerId) {
         clearInterval(timerId);
         timerId = null;
         startButton.textContent = 'Start';
     }
     
-    // Only show confetti when switching to rest mode
     if (!isWorkMode) {
         confetti({
             particleCount: 100,
@@ -43,9 +52,11 @@ function startTimer() {
         timerId = null;
         startButton.textContent = 'Start';
     } else {
+        const totalTime = isWorkMode ? WORK_TIME : REST_TIME;
         timerId = setInterval(() => {
             timeLeft--;
             updateDisplay();
+            updateProgressBar(timeLeft, totalTime);
             if (timeLeft === 0) {
                 clearInterval(timerId);
                 timerId = null;
@@ -65,6 +76,7 @@ function resetTimer() {
     timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
     startButton.textContent = 'Start';
     updateDisplay();
+    updateProgressBar(timeLeft, isWorkMode ? WORK_TIME : REST_TIME);
 }
 
 startButton.addEventListener('click', startTimer);
